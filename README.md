@@ -1,0 +1,3 @@
+# NotenschnittApp
+
+Computes Average Grade
