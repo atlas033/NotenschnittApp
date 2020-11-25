@@ -1,5 +1,7 @@
 #include "average.h"
 
+Average::Average(){}
+
 void Average::calculateAvg()
 {
     double avg = 0.0;

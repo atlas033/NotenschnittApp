@@ -22,8 +22,10 @@ public:
 private slots:
     void on_pushAdd_clicked();
 
+    void on_weightEdit_returnPressed();
+
 private:
     Ui::MainWindow *ui;
-    Average* abc = new Average();
+    Average* abc;
 };
 #endif // MAINWINDOW_H
