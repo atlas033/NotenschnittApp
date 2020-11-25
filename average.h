@@ -7,13 +7,15 @@
 class Average
 {
 public:
-    Average(int);
-    double avg;
-    void addGrade(Grade);
+    Average();
+//    Average(int , )      constructor mit uebergabe von user daten
+    void addGrade(Grade*);
+    double getAvg() const  {return m_avg;} ;
 
 private:
-    int ects;
-    std::vector<Grade> exams;
+    double m_avg;
+    std::vector<Grade*> exams;
+    void calculateAvg();
 };
 
 #endif // AVERAGE_H

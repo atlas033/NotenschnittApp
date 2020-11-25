@@ -73,7 +73,7 @@
      <item row="3" column="7">
       <widget class="QLabel" name="weight">
        <property name="text">
-        <string>ECTS-Punkte</string>
+        <string>ECTS-Punkte:</string>
        </property>
       </widget>
      </item>
@@ -132,7 +132,7 @@
      <item row="3" column="3">
       <widget class="QLabel" name="subjectName">
        <property name="text">
-        <string>Name des Fachs</string>
+        <string>Name des Fachs:</string>
        </property>
       </widget>
      </item>

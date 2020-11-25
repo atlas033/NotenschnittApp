@@ -1,16 +1,16 @@
 #ifndef GRADE_H
 #define GRADE_H
 
-#include <string>
+#include <QString>
 
 
 class Grade
 {
 public:
-    Grade(std::string, double, int);
-    std::string name;
+    Grade(QString, double, double);
+    QString name;
     double grade;
-    int weight;
+    double weight;
 };
 
 #endif // GRADE_H

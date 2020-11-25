@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     return a.exec();
-    Average(180);
-    averageDisplay->setText("note");
+    //averageDisplay->setText("note");
 
 }
