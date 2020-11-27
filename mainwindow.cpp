@@ -12,9 +12,31 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    this->saveFile();
     delete ui;
 }
 
+void MainWindow::saveFile()
+{
+    QString fileName;
+    // If we don't have a filename from before, get one.
+    if (currentFile.isEmpty()) {
+        fileName = QFileDialog::getSaveFileName(this, "Save");
+        currentFile = fileName;
+    } else {
+        fileName = currentFile;
+    }
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QFile::Text)) {
+        QMessageBox::warning(this, "Warning", "Cannot save file: " + file.errorString());
+        return;
+    }
+    setWindowTitle(fileName);
+    QTextStream out(&file);
+    QString text = abc->toPlainText();
+    out << text;
+    file.close();
+}
 
 void MainWindow::on_pushAdd_clicked()
 {
@@ -25,8 +47,10 @@ void MainWindow::on_pushAdd_clicked()
     ui->subjectNameEdit->clear();
     ui->gradeEdit->clear();
     ui->weightEdit->clear();
+    abc->calculateAvg();
     ui->avgDisplay->setText(QString::number(abc->getAvg(),'g', 2));
 }
+
 
 void MainWindow::on_weightEdit_returnPressed()
 {
@@ -35,21 +59,37 @@ void MainWindow::on_weightEdit_returnPressed()
     ui->subjectNameEdit->clear();
     ui->gradeEdit->clear();
     ui->weightEdit->clear();
+    abc->calculateAvg();
     ui->avgDisplay->setText(QString::number(abc->getAvg(),'g', 2));
 }
 
+
 void MainWindow::on_actionSave_triggered()
 {
-
+    this->saveFile();
 }
 
 void MainWindow::on_actionSave_As_triggered()
 {
+    QString fileName = QFileDialog::getSaveFileName(this, "Save as");
+    QFile file(fileName);
 
+    if (!file.open(QFile::WriteOnly | QFile::Text)) {
+        QMessageBox::warning(this, "Warning", "Cannot save file: " + file.errorString());
+        return;
+    }
+    currentFile = fileName;
+    setWindowTitle(fileName);
+    QTextStream out(&file);
+    QString text = abc->toPlainText();
+    out << text;
+    file.close();
 }
 
 void MainWindow::on_actionLoad_Profile_triggered()
 {
+    //  new average objekt
+
     QString fileName = QFileDialog::getOpenFileName(this, "Open the file");
     QFile file(fileName);
     currentFile = fileName;
@@ -59,13 +99,15 @@ void MainWindow::on_actionLoad_Profile_triggered()
     }
     setWindowTitle(fileName);
     QTextStream in(&file);
-    // do stuff
+    QString text = in.readAll();
+    abc->readAll(text);
     file.close();
+    ui->avgDisplay->setText(QString::number(abc->getAvg(),'g', 2));
 }
 
 void MainWindow::on_actionQuit_triggered()
 {
-
+    QCoreApplication::quit();
 }
 
 void MainWindow::on_actionNew_triggered()

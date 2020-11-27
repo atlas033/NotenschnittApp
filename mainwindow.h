@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QTextStream>
 
 
 QT_BEGIN_NAMESPACE
@@ -22,6 +23,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void saveFile();
 
 private slots:
     void on_pushAdd_clicked();
@@ -41,5 +43,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Average* abc;
+    QString currentFile;
 };
 #endif // MAINWINDOW_H

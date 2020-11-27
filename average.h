@@ -3,19 +3,22 @@
 
 #include "grade.h"
 #include <vector>
+#include <QTextStream>
+#include <QString>
 
 class Average
 {
 public:
     Average();
-//    Average(int , )      constructor mit uebergabe von user daten
     void addGrade(Grade*);
     double getAvg() const  {return m_avg;} ;
+    QString toPlainText();
+    void readAll(QString&);
+    void calculateAvg();
 
 private:
-    double m_avg;
+    double m_avg = 0.0;
     std::vector<Grade*> exams;
-    void calculateAvg();
 };
 
 #endif // AVERAGE_H
