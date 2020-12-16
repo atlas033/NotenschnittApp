@@ -3,6 +3,7 @@
 
 #include "grade.h"
 #include <vector>
+#include <memory>
 #include <QTextStream>
 #include <QString>
 
@@ -10,7 +11,7 @@ class Average
 {
 public:
     Average();
-    void addGrade(Grade*);
+    void addGrade(std::shared_ptr<Grade>);
     double getAvg() const  {return m_avg;} ;
     QString toPlainText();
     void readAll(QString&);
@@ -18,7 +19,7 @@ public:
 
 private:
     double m_avg = 0.0;
-    std::vector<Grade*> exams;
+    std::vector<std::shared_ptr<Grade>> exams;
 };
 
 #endif // AVERAGE_H

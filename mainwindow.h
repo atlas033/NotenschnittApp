@@ -4,7 +4,7 @@
 #include "grade.h"
 #include "average.h"
 
-
+#include <memory>
 #include <QMainWindow>
 #include <QFile>
 #include <QFileDialog>
@@ -42,7 +42,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Average* abc;
+    std::shared_ptr<Average> abc;
     QString currentFile;
 };
 #endif // MAINWINDOW_H

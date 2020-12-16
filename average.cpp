@@ -6,7 +6,7 @@ void Average::calculateAvg()
 {
     double avg = 0.0;
     double weights = 0.0;
-    for(Grade* grades:exams){
+    for(auto grades:exams){
         avg += grades->grade * grades->weight;
         weights += grades->weight;
     }
@@ -15,7 +15,7 @@ void Average::calculateAvg()
     return;
 }
 
-void Average::addGrade(Grade* a)
+void Average::addGrade(std::shared_ptr<Grade> a)
 {
     exams.push_back(a);
     return;
@@ -24,7 +24,7 @@ void Average::addGrade(Grade* a)
 QString Average::toPlainText()
 {
     QString text = QString::number(m_avg) + " ";
-    for(Grade* val:exams){
+    for(auto val:exams){
         text += "\n" + val->name + " " + QString::number(val->grade) + " " +  QString::number(val->weight) ;
     }
     return text;
@@ -34,13 +34,13 @@ void Average::readAll(QString& text)
 {
     QTextStream in(&text);
     in >> m_avg;
+    exams.clear();
     while(!in.atEnd())
     {
         QString x;
         double y,z;
         in >> x >> y >> z;
-        this->addGrade(new Grade(x, y, z));
+        this->addGrade(std::make_shared<Grade>(x, y, z));
     }
-    return;
 }
 

@@ -188,12 +188,12 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSave">
     <property name="title">
-     <string>Save</string>
+     <string>File</string>
     </property>
     <addaction name="actionNew"/>
     <addaction name="separator"/>
@@ -233,6 +233,12 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>subjectNameEdit</tabstop>
+  <tabstop>gradeEdit</tabstop>
+  <tabstop>weightEdit</tabstop>
+  <tabstop>pushAdd</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
